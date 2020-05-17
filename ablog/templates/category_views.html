@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if cat_post %}
+<h1>{{cats}}</h1>
+
+{% for post in cat_post %}
+<br>
+
+<div class="card">
+    <div class="card-header">
+Author: {{post.author}} || Category: {{post.category}}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{post.title}}</h5>
+     
+      <a href="{% url 'detail' post.id %}" class="btn btn-primary">Read More</a>
+    </div>
+  </div>
+  <br>
+{% endfor %}
+{% else %}
+<h3>Sorry!! This Category isnt Valid!!!</h3>
+
+{% endif %}
+
+{% endblock %}

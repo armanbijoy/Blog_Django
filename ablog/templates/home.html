@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if user.is_authenticated %}
+<h4>Welcome To Home --> {{request.user}}</h4>
+{% for post in object_list %}
+<br>
+
+<div class="card">
+    <div class="card-header">
+Author: {{post.author}} || Category: <a href="{% url 'cats' post.category %}">{{post.category}}</a>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{post.title}}</h5>
+     
+      <a href="{% url 'detail' post.id %}" class="btn btn-primary">Read More</a>
+    </div>
+  </div>
+  <br>
+  
+{% endfor %}
+
+{{cat_menu}}
+
+
+{%else%}
+  <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
+  <a class="btn btn-warning" href="{% url 'registration' %}">Registration</a>
+{% endif %}
+
+{% endblock %}
